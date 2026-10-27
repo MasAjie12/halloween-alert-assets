@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).parent
 DOWNLOADS = Path.home() / "Downloads"
@@ -22,6 +22,29 @@ def card_assets():
     src.transpose(Image.Transpose.FLIP_LEFT_RIGHT).save(ROOT / "kiricard-right.png")
 
 
+def foreground_asset():
+    bg = Image.open(ROOT / "bg.png").convert("RGBA")
+    mask = Image.new("L", bg.size, 0)
+    draw = ImageDraw.Draw(mask)
+    # Rough foreground silhouette: central character hair and torso.
+    draw.polygon([
+        (730, 220), (760, 145), (815, 85), (900, 35), (1005, 0),
+        (1140, 0), (1270, 8), (1415, 0), (1540, 25), (1650, 75),
+        (1715, 145), (1735, 230), (1695, 305), (1635, 355),
+        (1535, 330), (1480, 285), (1405, 245), (1320, 220),
+        (1225, 210), (1135, 230), (1050, 270), (980, 325),
+        (895, 355), (820, 340), (760, 290),
+    ], fill=255)
+    draw.polygon([
+        (680, 405), (790, 430), (900, 405), (1010, 420), (1080, 475),
+        (1150, 425), (1260, 405), (1380, 445), (1510, 500),
+        (1650, 545), (1780, 595), (1885, 665), (1935, 774),
+        (175, 774), (205, 690), (300, 600), (430, 535), (555, 490),
+    ], fill=255)
+    bg.putalpha(mask)
+    return bg, mask
+
+
 def alert_html(platform):
     supporter = "{supporter}" if platform == "sociabuzz" else "{donator}"
     from_html = '<div class="h39-from">{from_text}</div>' if platform == "sociabuzz" else ""
@@ -32,6 +55,7 @@ def alert_html(platform):
         '<div class="h39-mist h39-mist-a"></div><div class="h39-mist h39-mist-b"></div>'
         f'<img class="h39-card-decor" src="{REPO}/kiricard-right.png">'
         f'<img class="h39-pumpkin h39-left" src="{REPO}/labukiri.png">'
+        f'<img class="h39-foreground" src="{REPO}/foreground.png">'
         f'<img class="h39-pumpkin h39-right" src="{REPO}/labu-right.png">'
         '<div class="h39-bat h39-bat-a">✦</div><div class="h39-bat h39-bat-b">✦</div>'
         '<div class="h39-body">'
@@ -54,7 +78,8 @@ def alert_css():
 .h39-mist-a{left:5%;top:4%}.h39-mist-b{right:5%;bottom:0;animation-delay:-4s;background:#f47b2018}
 .h39-card-decor{position:absolute;left:-5%;top:-8%;width:54%;height:116%;object-fit:contain;object-position:left center;z-index:3;pointer-events:none;opacity:1;filter:invert(1) sepia(1) saturate(2.8) hue-rotate(330deg) brightness(1.15) drop-shadow(0 0 5px #ffd27a);animation:h39-card-float 5.5s ease-in-out infinite}
 .h39-pumpkin{position:absolute;top:9%;width:24%;height:82%;object-fit:contain;z-index:4;filter:drop-shadow(0 0 8px #ff7a2199);animation:h39-pumpkin-float 4.5s ease-in-out infinite alternate}
-.h39-left{left:26%;top:6%;width:27%;height:88%;object-position:center;z-index:5;transform:rotate(-14deg);transform-origin:50% 85%;animation:h39-left-emerge 4.5s ease-in-out infinite alternate}.h39-right{right:1%;object-position:right center;animation-delay:-2.2s}
+.h39-left{left:26%;top:6%;width:27%;height:88%;object-position:center;z-index:4;transform:rotate(-14deg);transform-origin:50% 85%;animation:h39-left-emerge 4.5s ease-in-out infinite alternate}.h39-right{right:1%;object-position:right center;animation-delay:-2.2s}
+.h39-foreground{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:5;pointer-events:none;filter:brightness(.82) saturate(1.2) contrast(1.08)}
 .h39-bat{position:absolute;z-index:5;color:#ffb342;font:700 23px/1 'Shadows Fright',sans-serif;text-shadow:0 0 10px #f47b20;animation:h39-bat 4s ease-in-out infinite alternate;pointer-events:none}
 .h39-bat-a{left:29%;top:13%}.h39-bat-b{right:29%;bottom:13%;animation-delay:-2s}
 .h39-body{position:relative;z-index:6;width:50%;height:100%;margin:0 auto;padding:28px 10px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
@@ -90,6 +115,8 @@ def main():
     if bg_source.is_file():
         (ROOT / "bg.png").write_bytes(bg_source.read_bytes())
     assert (ROOT / "bg.png").is_file(), "missing bg.png"
+    foreground, _ = foreground_asset()
+    foreground.save(ROOT / "foreground.png")
     css = alert_css()
     for platform in ("sociabuzz", "saweria"):
         html = alert_html(platform)
