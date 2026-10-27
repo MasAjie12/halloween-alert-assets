@@ -54,7 +54,7 @@ def alert_css():
 .h39-mist-a{left:5%;top:4%}.h39-mist-b{right:5%;bottom:0;animation-delay:-4s;background:#f47b2018}
 .h39-card-decor{position:absolute;left:-5%;top:-8%;width:54%;height:116%;object-fit:contain;object-position:left center;z-index:3;pointer-events:none;opacity:1;filter:invert(1) sepia(1) saturate(2.8) hue-rotate(330deg) brightness(1.15) drop-shadow(0 0 5px #ffd27a);animation:h39-card-float 5.5s ease-in-out infinite}
 .h39-pumpkin{position:absolute;top:9%;width:24%;height:82%;object-fit:contain;z-index:4;filter:drop-shadow(0 0 8px #ff7a2199);animation:h39-pumpkin-float 4.5s ease-in-out infinite alternate}
-.h39-left{left:1%;object-position:left center}.h39-right{right:1%;object-position:right center;animation-delay:-2.2s}
+.h39-left{left:26%;top:6%;width:27%;height:88%;object-position:center;z-index:5;transform:rotate(-14deg);transform-origin:50% 85%;animation:h39-left-emerge 4.5s ease-in-out infinite alternate}.h39-right{right:1%;object-position:right center;animation-delay:-2.2s}
 .h39-bat{position:absolute;z-index:5;color:#ffb342;font:700 23px/1 'Shadows Fright',sans-serif;text-shadow:0 0 10px #f47b20;animation:h39-bat 4s ease-in-out infinite alternate;pointer-events:none}
 .h39-bat-a{left:29%;top:13%}.h39-bat-b{right:29%;bottom:13%;animation-delay:-2s}
 .h39-body{position:relative;z-index:6;width:50%;height:100%;margin:0 auto;padding:28px 10px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
@@ -68,11 +68,12 @@ def alert_css():
 .h39-message{max-width:100%;color:#f7dfba;font:400 16px/1.35 'Shadows Fright',sans-serif;word-wrap:break-word;text-shadow:0 2px 5px #000}
 @keyframes h39-bg-zoom{0%{transform:scale(1)}100%{transform:scale(1.18)}}
 @keyframes h39-pumpkin-float{0%{transform:translateY(0)}100%{transform:translateY(-7px)}}
+@keyframes h39-left-emerge{0%{transform:translateY(8px) rotate(-14deg)}100%{transform:translateY(-5px) rotate(-18deg)}}
 @keyframes h39-card-float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(1deg)}}
 @keyframes h39-mist{0%{transform:translateX(-8px) scale(1)}100%{transform:translateX(10px) scale(1.18)}}
 @keyframes h39-bat{0%{transform:translateY(0) rotate(-8deg);opacity:.45}100%{transform:translateY(-13px) rotate(8deg);opacity:1}}
 @keyframes h39-pulse{0%{box-shadow:0 0 12px #f47b204c,0 0 5px #ffb34244 inset}100%{box-shadow:0 0 25px #f47b20aa,0 0 12px #ffb34288 inset}}
-@media(max-width:600px){.h39-card{height:220px;border-radius:14px}.h39-body{width:64%;padding:18px 4px}.h39-card-decor{left:-8%;top:-7%;width:66%;height:114%}.h39-pumpkin{width:22%;height:78%;top:11%}.h39-amount{font-size:30px;letter-spacing:1.4px;padding:6px 10px}.h39-supporter{font-size:22px;letter-spacing:1.4px}.h39-message{font-size:12px}.h39-from{font-size:11px}.h39-bat{font-size:16px}}
+@media(max-width:600px){.h39-card{height:220px;border-radius:14px}.h39-body{width:64%;padding:18px 4px}.h39-card-decor{left:-8%;top:-7%;width:66%;height:114%}.h39-pumpkin{width:22%;height:78%;top:11%}.h39-left{left:24%;top:8%;width:28%;height:82%;transform:rotate(-14deg);animation:h39-left-emerge 4.5s ease-in-out infinite alternate}.h39-amount{font-size:30px;letter-spacing:1.4px;padding:6px 10px}.h39-supporter{font-size:22px;letter-spacing:1.4px}.h39-message{font-size:12px}.h39-from{font-size:11px}.h39-bat{font-size:16px}}
 """
 
 
