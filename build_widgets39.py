@@ -13,7 +13,7 @@ BORDER = "#ff8a2480"
 BASE = f"""@font-face{{font-family:'Shadows Fright';src:url('https://raw.githubusercontent.com/MasAjie12/halloween-alert-assets/main/shadows-fright.ttf') format('truetype');font-display:swap}}
 @font-face{{font-family:'Saltblack Combat';src:url('https://raw.githubusercontent.com/MasAjie12/halloween-alert-assets/main/saltblack-combat.ttf') format('truetype');font-display:swap}}
 html,body{{overflow:hidden!important;margin:0;padding:0;background:transparent}}
-.card,.subathon-container,#ms_container,#__next>div,.w-sub,.w-mile,.w-top,.w-queue{{background:linear-gradient(135deg,#26102f,#3a1842 55%,#26102f)!important;border:1px solid {BORDER}!important;border-radius:14px!important;box-shadow:0 0 24px #ff8a2438!important;color:{GOLD}!important;font-family:'Shadows Fright',sans-serif!important;overflow:hidden!important;position:relative!important}}
+.card,.subathon-container,#ms_container,#__next>div,.w-sub,.w-mile,.w-top,.w-queue{{background:linear-gradient(135deg,#26102fcc,#3a1842cc 55%,#26102fcc),url('{RAW}/bgbaru.png') center/cover no-repeat!important;border:1px solid {BORDER}!important;border-radius:14px!important;box-shadow:0 0 24px #ff8a2438!important;color:{GOLD}!important;font-family:'Shadows Fright',sans-serif!important;overflow:hidden!important;position:relative!important}}
 .card:before,.subathon-container:before,#ms_container:before,#__next>div:before{{content:''!important;position:absolute!important;top:0!important;left:0!important;right:0!important;height:3px!important;background:linear-gradient(90deg,{PURPLE},{ORANGE},{GOLD},{ORANGE},{PURPLE})!important;background-size:240% 100%!important;animation:h39-witch-bar 5s linear infinite!important;pointer-events:none!important}}
 .sub_judul,.sub_judul strong,.card-header,#__next>div>.chakra-heading{{font-family:'Shadows Fright',sans-serif!important;color:{ORANGE}!important;font-size:22px!important;letter-spacing:1.8px!important;text-shadow:0 0 10px #ff8a2488!important;border-bottom:1px solid {BORDER}!important;padding-bottom:8px!important;margin-bottom:12px!important;display:block!important}}
 @keyframes h39-witch-bar{{0%{{background-position:0 0}}100%{{background-position:240% 0}}}}
@@ -67,7 +67,7 @@ def main():
     for f in ROOT.glob("*.css"):
         text = f.read_text(encoding="utf-8")
         assert "inset:" not in text
-        assert "h39-witch-bar" in text and "labu.png" not in text and "Shadows Fright" in text
+        assert "h39-witch-bar" in text and "labu.png" not in text and "Shadows Fright" in text and "bgbaru.png" in text
     print(f"Built {count} widget CSS files")
 
 
