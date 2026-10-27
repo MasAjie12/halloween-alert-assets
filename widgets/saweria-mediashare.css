@@ -1,4 +1,5 @@
 @font-face{font-family:'Shadows Fright';src:url('https://raw.githubusercontent.com/MasAjie12/halloween-alert-assets/main/shadows-fright.ttf') format('truetype');font-display:swap}
+@font-face{font-family:'Saltblack Combat';src:url('https://raw.githubusercontent.com/MasAjie12/halloween-alert-assets/main/saltblack-combat.ttf') format('truetype');font-display:swap}
 html,body{overflow:hidden!important;margin:0;padding:0;background:transparent}
 .card,.subathon-container,#ms_container,#__next>div,.w-sub,.w-mile,.w-top,.w-queue{background:linear-gradient(135deg,#26102f,#3a1842 55%,#26102f)!important;border:1px solid #ff8a2480!important;border-radius:14px!important;box-shadow:0 0 24px #ff8a2438!important;color:#ffd27a!important;font-family:'Shadows Fright',sans-serif!important;overflow:hidden!important;position:relative!important}
 .card:before,.subathon-container:before,#ms_container:before,#__next>div:before{content:''!important;position:absolute!important;top:0!important;left:0!important;right:0!important;height:3px!important;background:linear-gradient(90deg,#9b4dca,#ff8a24,#ffd27a,#ff8a24,#9b4dca)!important;background-size:240% 100%!important;animation:h39-witch-bar 5s linear infinite!important;pointer-events:none!important}
@@ -7,6 +8,8 @@ html,body{overflow:hidden!important;margin:0;padding:0;background:transparent}
 .card,.subathon-container,#ms_container,#__next>div{background:linear-gradient(135deg,#26102f,#3a1842 55%,#26102f)!important}
 .card>*,.subathon-container>*,#ms_container>*,#__next>div>*{position:relative!important;z-index:1!important}
 .media-container,.video-preview,video{display:none!important}.style-1.text-container,#sender,#nominal,#message{display:block!important;visibility:visible!important;opacity:1!important}
+#ms_container #sender{font-family:'Saltblack Combat','Shadows Fright',sans-serif!important;text-shadow:0 2px 3px #000!important}
+#ms_container #nominal{font-family:'Saltblack Combat','Shadows Fright',sans-serif!important;text-shadow:0 2px 3px #000!important}
 #ms_container .loadingbar{display:block!important;position:relative!important;z-index:6!important;width:min(460px,90%)!important;height:5px!important;margin:16px auto 8px!important;background:#050208cc!important;border:1px solid #ff8a2480!important;border-radius:999px!important;opacity:1!important;visibility:visible!important;overflow:hidden!important}
 #ms_container .loadingbar svg path:first-child{stroke:#0000!important}#ms_container .loadingbar svg path:last-child{stroke:#ff8a24!important;filter:drop-shadow(0 0 6px #ff8a24)!important}
 #ms_container .wrapper.hide,#ms_container.hide,#ms_container .hide{opacity:0!important;visibility:hidden!important}

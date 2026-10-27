@@ -6,6 +6,7 @@ ROOT = Path(__file__).parent
 DOWNLOADS = Path.home() / "Downloads"
 REPO = "https://raw.githubusercontent.com/MasAjie12/halloween-alert-assets/main"
 FONT_FILE = "shadows-fright.ttf"
+TOKEN_FONT_FILE = "saltblack-combat.ttf"
 
 
 def pumpkin_assets():
@@ -44,6 +45,7 @@ def alert_html(platform):
 
 def alert_css():
     return """@font-face{font-family:'Shadows Fright';src:url('https://raw.githubusercontent.com/MasAjie12/halloween-alert-assets/main/shadows-fright.ttf') format('truetype');font-display:swap}
+@font-face{font-family:'Saltblack Combat';src:url('https://raw.githubusercontent.com/MasAjie12/halloween-alert-assets/main/saltblack-combat.ttf') format('truetype');font-display:swap}
 .h39-wrap{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;overflow:hidden}
 .h39-card{position:relative;width:760px;max-width:96vw;height:290px;margin:0 auto;overflow:hidden;border:2px solid #f47b20;border-radius:18px;background:#160b20;box-shadow:0 0 18px #f47b2088,0 0 55px #7e27a866;color:#fff2d2;font-family:'Shadows Fright',sans-serif}
 .h39-bg{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;filter:brightness(.82) saturate(1.2) contrast(1.08);animation:h39-bg-zoom 18s ease-in-out infinite alternate}
@@ -56,9 +58,9 @@ def alert_css():
 .h39-bat{position:absolute;z-index:5;color:#ffb342;font:700 23px/1 'Shadows Fright',sans-serif;text-shadow:0 0 10px #f47b20;animation:h39-bat 4s ease-in-out infinite alternate;pointer-events:none}
 .h39-bat-a{left:29%;top:13%}.h39-bat-b{right:29%;bottom:13%;animation-delay:-2s}
 .h39-body{position:relative;z-index:6;width:50%;height:100%;margin:0 auto;padding:28px 10px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-.h39-amount{padding:7px 18px 8px;border:1px solid #ffd27a;border-radius:10px;background:#160b20f2;box-shadow:0 2px 7px #000b;color:#fff0b0;font:800 35px/1.1 'Shadows Fright',sans-serif;letter-spacing:1px;text-shadow:0 2px 3px #000;animation:none}
+.h39-amount{padding:7px 18px 8px;border:1px solid #ffd27a;border-radius:10px;background:#160b20f2;box-shadow:0 2px 7px #000b;color:#fff0b0;font:800 35px/1.1 'Saltblack Combat','Shadows Fright',sans-serif;letter-spacing:1px;text-shadow:0 2px 3px #000;animation:none}
 .h39-from{margin-top:5px;color:#ffd27a;font:700 13px/1.2 'Shadows Fright',sans-serif;letter-spacing:1px;text-shadow:0 2px 3px #000}
-.h39-supporter{max-width:100%;margin-top:7px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff8e6;font:700 24px/1.2 'Shadows Fright',sans-serif;text-shadow:0 2px 3px #000}
+.h39-supporter{max-width:100%;margin-top:7px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff8e6;font:700 24px/1.2 'Saltblack Combat','Shadows Fright',sans-serif;text-shadow:0 2px 3px #000}
 .h39-divider{display:flex;align-items:center;width:82%;height:12px;margin:6px auto 3px;color:#ffb342;font-size:13px}
 .h39-divider:before,.h39-divider:after{content:'';height:1px;flex:1;background:linear-gradient(90deg,transparent,#ffb342)}
 .h39-divider:after{background:linear-gradient(90deg,#ffb342,transparent)}
@@ -81,6 +83,7 @@ def main():
     pumpkin_assets()
     card_assets()
     assert (ROOT / FONT_FILE).is_file(), f"missing {FONT_FILE}"
+    assert (ROOT / TOKEN_FONT_FILE).is_file(), f"missing {TOKEN_FONT_FILE}"
     bg_source = DOWNLOADS / "bg.png"
     if bg_source.is_file():
         (ROOT / "bg.png").write_bytes(bg_source.read_bytes())
@@ -96,7 +99,7 @@ def main():
             assert "{donator}" in html and "{from_text}" not in html
         (ROOT / f"{platform}-alert.html").write_text(html, encoding="utf-8")
         (ROOT / f"{platform}-alert.css").write_text(css, encoding="utf-8")
-    assert css.count("url('") == 1 and "inset:" not in css
+    assert css.count("url('") == 2 and "inset:" not in css
     print("Built Halloween alert assets and Sociabuzz/Saweria alert files")
 
 
